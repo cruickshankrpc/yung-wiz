@@ -10,9 +10,9 @@ import { Client } from '@notionhq/client'
 // simplify it to make it easy to work with on the front end
 interface NotionContent {
   title: string;
-  // content?: string;
+  contentArr?: string[];
   // metadata?: string;
-  // file:
+  fileUrl?: string;
   // type:
 }
 
@@ -47,36 +47,47 @@ const server = http.createServer(async (req, res) => {
 
       // We map over the complex shape of the results and return a nice clean array of
       // objects in the shape of our `NotionContent` interface
-      const list: NotionContent[] = query.results.map((row) => {
+      const resultsArr: NotionContent[] = query.results.map((row: any) => {
         // row represents a row in our database and the name of the column is the
         // way to reference the data in that column
         const titleCell = row.properties.Title.title[0].plain_text
-        // const contentCell = row.properties.content
+
+        const contentCell = row.properties.Content
+        // const fileUrl = results['Files & media']?.files[0]?.file.url
+
+
+        // console.log('contentCell', contentCell)
 
         // Depending on the column "type" we selected in Notion there will be different
         // data available to us (URL vs Date vs text for example) so in order for Typescript
         // to safely infer we have to check the `type` value.  We had one text and one url column.
         const isTitle = titleCell.type === 'rich_text'
+
         // const isContent = urlCell.type === 'url'
 
         // Verify the types are correct
-        if (isTitle) {
-          // Pull the string values of the cells off the column data
-          const title = titleCell.rich_text?.[0].plain_text
-          // const url = urlCell.url ?? ''
+        // if (isTitle) {
+        // Pull the string values of the cells off the column data
+        console.log('titleCell>>', titleCell)
+        const title = titleCell
+        // const url = urlCell.url ?? ''
 
-          // Return it in our `NotionContent` shape
-          return { title }
-        }
+        const contentArr = contentCell.rich_text.map((item: any) => item.plain_text) 
+        console.log('contentArr', contentArr)
+        // Return it in our `NotionContent` shape
+        return { title, contentArr }
+        // }
 
         // If a row is found that does not match the rules we checked it will still return in the
         // the expected shape but with a NOT_FOUND title
-        return { title: 'NOT_FOUND' }
+        // return { title: 'NOT_FOUND' }
       })
+
+      console.log('resultsArr>>', resultsArr)
 
       res.setHeader('Content-Type', 'application/json')
       res.writeHead(200)
-      res.end(JSON.stringify(list))
+      res.end(JSON.stringify(resultsArr))
       break
 
     default:
