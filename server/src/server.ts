@@ -68,14 +68,18 @@ const server = http.createServer(async (req, res) => {
         // Verify the types are correct
         // if (isTitle) {
         // Pull the string values of the cells off the column data
-        console.log('titleCell>>', titleCell)
+        // console.log('titleCell>>', titleCell)
         const title = titleCell
         // const url = urlCell.url ?? ''
 
         const contentArr = contentCell.rich_text.map((item: any) => item.plain_text) 
-        console.log('contentArr', contentArr)
+        // console.log('contentArr', contentArr)
+
+        const fileUrl =  row.properties['Files & media'].files[0]?.file?.url
+        console.log('fileUrl>>', fileUrl)
+
         // Return it in our `NotionContent` shape
-        return { title, contentArr }
+        return { title, contentArr, fileUrl }
         // }
 
         // If a row is found that does not match the rules we checked it will still return in the
