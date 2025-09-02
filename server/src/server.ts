@@ -76,13 +76,10 @@ const server = http.createServer(async (req, res) => {
         // console.log('contentArr', contentArr)
 
         const fileUrl =  row.properties['Files & media'].files[0]?.file?.url
-        // console.log('fileUrl>>', fileUrl)
-
-        const youtubeEmbed = row.properties.Link?.rich_text[0]?.plain_text
-        console.log('youtubeEmbed', youtubeEmbed)
+        console.log('fileUrl>>', fileUrl)
 
         // Return it in our `NotionContent` shape
-        return { title, contentArr, fileUrl, youtubeEmbed }
+        return { title, contentArr, fileUrl }
         // }
 
         // If a row is found that does not match the rules we checked it will still return in the
@@ -90,7 +87,7 @@ const server = http.createServer(async (req, res) => {
         // return { title: 'NOT_FOUND' }
       })
 
-      // console.log('resultsArr>>', resultsArr)
+      console.log('resultsArr>>', resultsArr)
 
       res.setHeader('Content-Type', 'application/json')
       res.writeHead(200)
