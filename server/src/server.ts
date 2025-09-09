@@ -4,8 +4,6 @@ require('dotenv').config()
 import http from 'http'
 import { Client } from '@notionhq/client'
 
-// TODO update types
-
 // This is Typescript  interface for the shape of the object we will
 // create based on our database to send to the React app
 // When the data is queried it will come back in a much more complicated shape, so our goal is to
@@ -52,20 +50,38 @@ const server = http.createServer(async (req, res) => {
       const resultsArr: NotionContent[] = query.results.map((row: any) => {
         // row represents a row in our database and the name of the column is the
         // way to reference the data in that column
+        const titleCell = row.properties.Title.title[0].plain_text
 
         const contentCell = row.properties.Content
-       
+        // const fileUrl = results['Files & media']?.files[0]?.file.url
+
+
+        // console.log('contentCell', contentCell)
+
+        // Depending on the column "type" we selected in Notion there will be different
+        // data available to us (URL vs Date vs text for example) so in order for Typescript
+        // to safely infer we have to check the `type` value.  We had one text and one url column.
+        const isTitle = titleCell.type === 'rich_text'
+
+        // const isContent = urlCell.type === 'url'
+
+        // Verify the types are correct
+        // if (isTitle) {
         // Pull the string values of the cells off the column data
-        const title = contentCell.Title.title[0].plain_text
+        // console.log('titleCell>>', titleCell)
+        const title = titleCell
 
         const contentArr = contentCell.rich_text.map((item: any) => item.plain_text) 
+        // console.log('contentArr', contentArr)
 
-        const fileUrl = contentCell['Files & media'].files[0]?.file?.url
+        const fileUrl =  row.properties['Files & media'].files[0]?.file?.url
 
-        const link = contentCell.Link?.rich_text[0]?.plain_text
+        const link = row.properties.Link?.rich_text[0]?.plain_text
 
+        console.log("LINK>>", link)
         // Return it in our `NotionContent` shape
         return { title, contentArr, fileUrl, link }
+        // }
 
         // If a row is found that does not match the rules we checked it will still return in the
         // the expected shape but with a NOT_FOUND title

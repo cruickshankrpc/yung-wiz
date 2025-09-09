@@ -2,7 +2,7 @@ export interface ListDataProps {
   title: string;
   contentArr?: string[]
   fileUrl?: string;
-  youtubeEmbed?: string;
+  link?: string;
 }
 
 export interface ListProps {

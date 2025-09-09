@@ -2,7 +2,11 @@ import { Link, useParams } from "react-router-dom"
 import { ListProps } from "../../types"
 import { YoutubeEmbed } from "../../YoutubeEmbed"
 import { WindowComponent, WindowComponentProps } from "../Window/Window.component"
+import React from 'react'
+import ReactPlayer from 'react-player'
+
 import './Item.styles.css'
+
 
 // TODO
 // lazy loading
@@ -13,8 +17,6 @@ export const Item = ({ list }: ListProps) => {
   const { itemTitle } = useParams()
 
   const clickedItem = list && list.find((item: any) => item.title === itemTitle)
-
-  // console.log('itemTitle', itemTitle)
 
   const Content = () => {
     return (
@@ -27,8 +29,9 @@ export const Item = ({ list }: ListProps) => {
               </div>}
       {clickedItem?.fileUrl && 
         <img src={`${clickedItem.fileUrl}`} height="400" />}
-      {clickedItem?.youtubeEmbed && 
-        <YoutubeEmbed embedId={clickedItem.youtubeEmbed} />}
+      {clickedItem?.link && 
+        <ReactPlayer src={clickedItem.link} width={450} height={250} controls />
+}
 </>
     )
   }
