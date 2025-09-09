@@ -14,7 +14,7 @@ export const Item = ({ list }: ListProps) => {
 
   const clickedItem = list && list.find((item: any) => item.title === itemTitle)
 
-  console.log('itemTitle', itemTitle)
+  // console.log('itemTitle', itemTitle)
 
   const Content = () => {
     return (
@@ -22,7 +22,7 @@ export const Item = ({ list }: ListProps) => {
       {clickedItem?.contentArr && 
         <div style={{ maxWidth: "500px"}}>
           {clickedItem?.contentArr?.map((content: any) =>
-                <p>{content}</p>
+                <div style={{ whiteSpace: "pre-line"}}>{content}</div>
               )}
               </div>}
       {clickedItem?.fileUrl && 
