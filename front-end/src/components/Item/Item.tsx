@@ -1,8 +1,6 @@
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { ListProps } from "../../types"
-import { YoutubeEmbed } from "../../YoutubeEmbed"
-import { WindowComponent, WindowComponentProps } from "../Window/Window.component"
-import React from 'react'
+import { WindowComponent } from "../Window/Window.component"
 import ReactPlayer from 'react-player'
 
 import './Item.styles.css'
@@ -12,6 +10,7 @@ import './Item.styles.css'
 // lazy loading
 // add spinner
 // switch statement for content 
+// context for finding clicked item ?
 
 export const Item = ({ list }: ListProps) => {
   const { itemTitle } = useParams()
