@@ -1,0 +1,17 @@
+.Orb {
+  background-image: url("/public/orb.png");
+  height: 50px;
+  width: 50px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  z-index: 9999;
+  left: 10px;
+}
+
+.Orb:hover {
+  filter: brightness(1.2)
+}
