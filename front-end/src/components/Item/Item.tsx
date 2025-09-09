@@ -39,7 +39,7 @@ export const Item = ({ list }: ListProps) => {
 
   return (
       clickedItem ? (
-      <div className="Item__Wrapper"><WindowComponent className="Item" content={<Content />} title={itemTitle || "untitled"} width={"fit-content"} /> </div>)
+      <div className="Item__Wrapper"><WindowComponent className="Item" content={<Content />} title={itemTitle || "untitled"} width={"fit-content"} /></div>)
       : (
         <></>
       )

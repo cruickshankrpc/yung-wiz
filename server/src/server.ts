@@ -52,18 +52,11 @@ const server = http.createServer(async (req, res) => {
         // way to reference the data in that column
         const titleCell = row.properties.Title.title[0].plain_text
 
-        const contentCell = row.properties.Content
-        // const fileUrl = results['Files & media']?.files[0]?.file.url
-
-
-        // console.log('contentCell', contentCell)
-
         // Depending on the column "type" we selected in Notion there will be different
         // data available to us (URL vs Date vs text for example) so in order for Typescript
         // to safely infer we have to check the `type` value.  We had one text and one url column.
         const isTitle = titleCell.type === 'rich_text'
 
-        // const isContent = urlCell.type === 'url'
 
         // Verify the types are correct
         // if (isTitle) {
@@ -71,17 +64,14 @@ const server = http.createServer(async (req, res) => {
         // console.log('titleCell>>', titleCell)
         const title = titleCell
 
-        const contentArr = contentCell.rich_text.map((item: any) => item.plain_text) 
-        // console.log('contentArr', contentArr)
+        const contentArr = row.properties.Content.rich_text.map((item: any) => item.plain_text) 
 
         const fileUrl =  row.properties['Files & media'].files[0]?.file?.url
 
         const link = row.properties.Link?.rich_text[0]?.plain_text
 
-        console.log("LINK>>", link)
         // Return it in our `NotionContent` shape
         return { title, contentArr, fileUrl, link }
-        // }
 
         // If a row is found that does not match the rules we checked it will still return in the
         // the expected shape but with a NOT_FOUND title
