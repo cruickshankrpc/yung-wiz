@@ -16,12 +16,9 @@ interface NotionContent {
   link?: string;
 }
 
-// The dotenv library will read from your .env file into these values on `process.env`
 const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID
 const NOTION_SECRET = process.env.NOTION_SECRET
 
-// Will provide an error to users who forget to create the .env file
-// with their Notion data in it
 if (!NOTION_DATABASE_ID || !NOTION_SECRET) {
   throw Error('Must define NOTION_SECRET and NOTION_DATABASE_ID in env')
 }
@@ -61,7 +58,6 @@ const server = http.createServer(async (req, res) => {
         // Verify the types are correct
         // if (isTitle) {
         // Pull the string values of the cells off the column data
-        // console.log('titleCell>>', titleCell)
         const title = titleCell
 
         const contentArr = row.properties.Content.rich_text.map((item: any) => item.plain_text) 

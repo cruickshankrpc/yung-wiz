@@ -7,6 +7,7 @@ import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } 
 import { DatabaseList } from './components/Database/Database';
 import { Item } from './components/Item/Item';
 import Login from './components/Login/Login';
+import HomePage from './components/HomePage/HomePage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

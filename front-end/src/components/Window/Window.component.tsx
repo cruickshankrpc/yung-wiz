@@ -12,7 +12,7 @@ export interface WindowComponentProps {
 export const WindowComponent = ({ content, title, width = "500px", className }: WindowComponentProps) => {
   const [open, setOpen] = useState<boolean>(true)
 
-  console.log(open)
+  console.log("WINDOWCOMP", open)
   return (
     open ? (
       <div className={`Window ${className} window active`} style={{ maxWidth: width, height: 'fit-content' }}>
@@ -28,9 +28,7 @@ export const WindowComponent = ({ content, title, width = "500px", className }: 
         {content}
       </div>
     </div>
-    ) : (
-      <></>
-    )
-
+    ) : 
+      null
   )
 }
