@@ -8,6 +8,8 @@ import { DatabaseList } from './components/Database/Database';
 import { Item } from './components/Item/Item';
 import Login from './components/Login/Login';
 import HomePage from './components/HomePage/HomePage';
+import StartUpScreen from './components/StartUpScreen/StartUpScreen';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,9 +19,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/login" element={<Login />}/>
-      <Route path="/" element={<App />}>
-        <Route path="/database"  element={<DatabaseList list={[]} />}>
-          <Route path="/database/:itemTitle" element={<Item list={[]}  />} />
+      <Route path="/" element={<StartUpScreen />}/>
+      <Route path="/home" element={<App />}>
+        <Route path="/home/database"  element={<DatabaseList list={[]} />}>
+          <Route path="/home/database/:itemTitle" element={<Item list={[]}  />} />
       </Route>
       </Route>
   </Route>

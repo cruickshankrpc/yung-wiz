@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React, { useState, useContext, createContext } from 'react';
+import React, { useState, useContext, createContext, useEffect } from 'react';
 import '../../App.css';
 import "7.css/dist/7.css";
 import { Link, Outlet } from 'react-router';
@@ -18,9 +18,7 @@ import { useQuery } from '@tanstack/react-query';
 // TODO 
 // Eslint & Prettier 
 // useContext to set state of modals open/closed 
-// useQuery to have data loaded on first page load, cache, have across other pages etc
 // create login screen
-// add startup music
 // add menu bar
 // center bg img
 // stretch: add option to leave a note/add a memory 
@@ -28,6 +26,11 @@ import { useQuery } from '@tanstack/react-query';
 function HomePage() {
   const [modal, setModalToOpen] = useState<boolean>(false)
 
+
+
+
+
+  // TODO error handling
   const { error, data, isPending } = useQuery({
     queryKey: ['databaseData'],
     queryFn: async () => {
@@ -40,6 +43,9 @@ function HomePage() {
   })
 
   console.log("DATA", data)
+
+
+  if (error) return <h1>"Error loading content"</h1>
   
   return (
     <div className="HomePage">
