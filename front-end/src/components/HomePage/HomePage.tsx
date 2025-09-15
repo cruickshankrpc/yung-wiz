@@ -18,7 +18,8 @@ import { useQuery } from '@tanstack/react-query';
 // TODO 
 // Eslint & Prettier 
 // useContext to set state of modals open/closed 
-// create login screen
+// Cleanup classnames for consistency
+// add auth logic for login
 // add menu bar
 // center bg img
 // stretch: add option to leave a note/add a memory 
@@ -27,7 +28,7 @@ function HomePage() {
   const [modal, setModalToOpen] = useState<boolean>(false)
 
   // TODO error handling
-  const { error, data, isPending } = useQuery({
+  const { error, data } = useQuery({
     queryKey: ['databaseData'],
     queryFn: async () => {
       const response = await fetch(
@@ -41,7 +42,7 @@ function HomePage() {
   console.log("DATA", data)
 
 
-  if (error) return <h1>"Error loading content"</h1>
+  if (error) return <h1>Error loading content</h1>
   
   return (
     <div className="HomePage">

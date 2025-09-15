@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router';
 import { DatabaseList } from './components/Database/Database';
 import { Item } from './components/Item/Item';
-import Login from './components/Login/Login';
+import LoginPage from './components/LoginPage/LoginPage';
 import HomePage from './components/HomePage/HomePage';
 import StartUpScreen from './components/StartUpScreen/StartUpScreen';
 
@@ -18,8 +18,8 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/login" element={<Login />}/>
       <Route path="/" element={<StartUpScreen />}/>
+      <Route path="/login" element={<LoginPage />}/>
       <Route path="/home" element={<App />}>
         <Route path="/home/database"  element={<DatabaseList list={[]} />}>
           <Route path="/home/database/:itemTitle" element={<Item list={[]}  />} />
