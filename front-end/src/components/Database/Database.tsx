@@ -13,7 +13,7 @@ export const DatabaseList = ({ list }: ListProps) => {
 
         return (
           <div>
-            <Link to={`/database/${item.title}`}>
+            <Link to={`/home/database/${item.title}`}>
               <li role="option" key={idx} id={item.title} >{item.title}</li>
             </Link>
           </div>

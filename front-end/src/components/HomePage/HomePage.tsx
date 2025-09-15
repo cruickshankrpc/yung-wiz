@@ -26,10 +26,6 @@ import { useQuery } from '@tanstack/react-query';
 function HomePage() {
   const [modal, setModalToOpen] = useState<boolean>(false)
 
-
-
-
-
   // TODO error handling
   const { error, data, isPending } = useQuery({
     queryKey: ['databaseData'],
@@ -64,7 +60,7 @@ function HomePage() {
         <TaskBar />
         <DatabaseIcon />
       <Link 
-        to="/database"       
+        to="/home/database"       
         onClick={() => {
             setModalToOpen(!modal)
         }}
