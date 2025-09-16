@@ -1,31 +1,30 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import { defineConfig } from "eslint/config";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsparser from "@typescript-eslint/parser";
+import prettierPlugin from "eslint-plugin-prettier"; // runs Prettier as an ESLint rule
+import prettierConfig from "eslint-config-prettier"; //disables ESLint rules that conflict with Prettier.
 
-export default defineConfig([
+export default [
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-    plugins: { js },
-    extends: ["js/recommended"],
-  },
-  {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-    languageOptions: { globals: globals.browser },
-  },
-  tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  {
-    env: {
-      browser: true,
-      commonjs: true,
-      es2021: true,
+    files: ["**/*.ts"],
+
+    languageOptions: {
+      parser: tsparser,
+      sourceType: "module",
     },
-    extends: ["airbnb-base"],
-    parserOptions: {
-      ecmaVersion: 12,
+
+    plugins: {
+      "@typescript-eslint": tseslint,
+      prettier: prettierPlugin,
     },
-    rules: {},
+
+    rules: {
+      ...tseslint.configs.recommended.rules,
+      ...prettierConfig.rules,
+      "@typescript-eslint/no-unused-vars": "warn",
+      "no-console": "warn",
+      semi: ["error", "always"],
+      quotes: ["error", "double"],
+      "prettier/prettier": "error",
+    },
   },
-]);
+];

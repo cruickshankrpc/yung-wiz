@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-For the yung wizard 
+For the yung wizard
 
 ## Available Scripts
 

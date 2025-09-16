@@ -1,5 +1,5 @@
 .SpaceInvaders__Icon {
-  background-image: url('/public/space-invaders.png');
+  background-image: url("/public/space-invaders.png");
   background-repeat: no-repeat;
   background-size: 60px;
   background-position: top center;
@@ -9,7 +9,7 @@
   border-radius: 2px;
   position: absolute;
   bottom: 250px;
-  left: 25px
+  left: 25px;
 }
 
 .SpaceInvaders__Icon:after {
@@ -25,6 +25,6 @@
 }
 
 .SpaceInvaders__Icon:hover {
-  background-color: rgba(255,255,255,.3);
-  border-color:rgba(255,255,255,.3);
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
 }

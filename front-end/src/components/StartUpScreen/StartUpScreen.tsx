@@ -1,28 +1,29 @@
-import { useState, useEffect } from 'react'
-import './StartUpScreen.styles.css';
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import "./StartUpScreen.styles.css";
+import { useNavigate } from "react-router-dom";
 
 function StartUpScreen() {
-  const [playVideo, setPlayVideo] = useState<boolean>(false)
-  const navigate = useNavigate()
+  const [playVideo, setPlayVideo] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    document.body.addEventListener('click', () => {
-      console.log('Click!');
-      setPlayVideo(true)
+    document.body.addEventListener("click", () => {
+      console.log("Click!");
+      setPlayVideo(true);
     });
   }, []);
-    setTimeout(() => {
-    setPlayVideo(false)
-    navigate('/login')
-  }, 8000)
-
+  setTimeout(() => {
+    setPlayVideo(false);
+    navigate("/login");
+  }, 8000);
 
   return (
     <div className="StartUpPage">
-      {playVideo ? <video src="/startup.mp4" id="video" autoPlay></video> : null}
+      {playVideo ? (
+        <video src="/startup.mp4" id="video" autoPlay></video>
+      ) : null}
     </div>
-  )
+  );
 }
 
-export default StartUpScreen
+export default StartUpScreen;
