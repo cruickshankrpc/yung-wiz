@@ -22,8 +22,6 @@ const LoginPage = () => {
       console.log("success")
       navigate("/home")
     }
-
-
   }
 
   const handleInput = (e: { target: { name: any; value: any; }; }) => {

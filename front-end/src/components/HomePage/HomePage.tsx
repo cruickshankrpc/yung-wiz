@@ -10,6 +10,7 @@ import SpaceInvadersIcon from '../Icons/SpaceInvaders/SpaceInvaders.component';
 import { Item } from '../Item/Item';
 import TaskBar from '../TaskBar/TaskBar.component';
 import { useQuery } from '@tanstack/react-query';
+import useDatabaseList from '../../hooks/useDatabaseList';
 
 
 // const ModalContext = createContext();
@@ -25,23 +26,6 @@ import { useQuery } from '@tanstack/react-query';
 
 function HomePage() {
   const [modal, setModalToOpen] = useState<boolean>(false)
-
-  // TODO error handling
-  const { error, data } = useQuery({
-    queryKey: ['databaseData'],
-    queryFn: async () => {
-      const response = await fetch(
-        "http://localhost:8000/"
-      )
-      const res = await response.json()
-      return res.reverse()
-    }
-  })
-
-  console.log("DATA", data)
-
-
-  if (error) return <h1>Error loading content</h1>
   
   return (
     <div className="HomePage">
@@ -49,8 +33,8 @@ function HomePage() {
 
       { modal ? (
         <>
-        <DatabaseList list={data}/>
-        <Item list={data} />
+        <DatabaseList/>
+        <Item />
         </>
       ) : null } 
 

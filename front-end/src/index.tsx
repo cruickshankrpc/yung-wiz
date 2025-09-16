@@ -21,8 +21,8 @@ const router = createBrowserRouter(
       <Route path="/" element={<StartUpScreen />}/>
       <Route path="/login" element={<LoginPage />}/>
       <Route path="/home" element={<App />}>
-        <Route path="/home/database"  element={<DatabaseList list={[]} />}>
-          <Route path="/home/database/:itemTitle" element={<Item list={[]}  />} />
+        <Route path="/home/database"  element={<DatabaseList />}>
+          <Route path="/home/database/:itemTitle" element={<Item />} />
       </Route>
       </Route>
   </Route>
