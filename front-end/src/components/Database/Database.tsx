@@ -23,7 +23,7 @@ export const DatabaseList = ({ list }: ListProps) => {
     )
   }
   return (
-    <div className="Database__Wrapper">
+    <div className="Database__Wrapper win7">
     <WindowComponent className="Database" content={<Content/>} title="Database" />
     </div>
   )

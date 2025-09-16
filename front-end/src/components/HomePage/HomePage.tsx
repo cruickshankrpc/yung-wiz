@@ -1,9 +1,8 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState, useContext, createContext, useEffect } from 'react';
-import '../../App.css';
-import "7.css/dist/7.css";
-import { Link, Outlet } from 'react-router';
-import { ListDataProps } from '../../types';
+import './HomePage.styles.css';
+import "7.css/dist/7.scoped.css"
+import { Link } from 'react-router';
 import { DatabaseList } from '../Database/Database';
 import DatabaseIcon from '../Icons/DatabaseIcon/DatabaseIcon.component';
 import Orb from '../Icons/Orb/Orb.component';

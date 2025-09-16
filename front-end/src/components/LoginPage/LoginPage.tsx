@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import "./Login.styles.css"
-import "7.css/dist/7.css";
+import "7.css/dist/7.scoped.css"
 import ArrowIcon from '../Icons/Arrow/ArrowIcon';
 import { useNavigate } from 'react-router-dom'
 
@@ -11,9 +11,6 @@ const LoginPage = () => {
     password: ""
   })
 
-  // TODO make arrow icon a button
-
-
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     console.log(input.username)
@@ -21,9 +18,11 @@ const LoginPage = () => {
     if (input.username !== "jack" && input.password !== "bluelotus") {
       // dispatch action from hooks
       alert("Please provide valid username and password")     
+    } else if (input.username !== "jack" && input.password !== "bluelotus") {
+      console.log("success")
+      navigate("/home")
     }
-    console.log("success")
-    navigate("/home")
+
 
   }
 
@@ -41,7 +40,7 @@ const LoginPage = () => {
       <img src="/login-image.png" width="200"/>
       <div className="inputs__container">
         <div>
-      <div>
+      <div className="win7">
         <label htmlFor="username"/>
         <input
           type="text"
@@ -54,7 +53,7 @@ const LoginPage = () => {
           className="input"
            />
       </div>
-        <div>
+        <div className="win7">
         <label htmlFor="password" />
         <input
           type="password"
@@ -69,7 +68,7 @@ const LoginPage = () => {
       </div>
       </div>
       <div className="arrow-icon__container">
-        <button>
+        <button className="button">
       <ArrowIcon />
       </button>
       </div>
