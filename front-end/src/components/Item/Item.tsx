@@ -4,12 +4,12 @@ import { WindowComponent } from "../Window/Window.component";
 import ReactPlayer from "react-player";
 import "./Item.styles.css";
 import useDatabaseList from "../../hooks/useDatabaseList";
+import { PendingModal } from "../Modals/PendingModal";
+import { ErrorModal } from "../Modals/ErrorModal";
 
 // TODO
 // lazy loading
-// add spinner
-// switch statement for content
-// context for finding clicked item ?
+// add spinner/loading element
 // cleanup styles for consistency
 
 const TextItem = ({ data }: any) => {
@@ -24,21 +24,18 @@ const TextItem = ({ data }: any) => {
 
 export const Item = () => {
   const { itemTitle } = useParams();
-  const { data } = useDatabaseList();
+  const { data, error, isPending, isLoading } = useDatabaseList();
 
   const clickedItem =
     data && data.find((item: ListDataProps) => item.title === itemTitle);
 
   const Content = () => {
+    if (error) return <ErrorModal />;
+
+    if (isPending || isLoading) return <PendingModal />;
+
     return (
       <>
-        {/* {(() => {
-      switch (clickedItem) {
-        case clickedItem.contentArr:
-          return <TextItem data={clickedItem.contentArr}/>
-      }
-    })()} */}
-
         {clickedItem?.contentArr && <TextItem data={clickedItem?.contentArr} />}
         {clickedItem?.fileUrl && (
           <img
@@ -61,13 +58,18 @@ export const Item = () => {
   };
 
   return clickedItem ? (
-    <div className="Item__Wrapper win7">
-      <WindowComponent
-        className="Item"
-        content={<Content />}
-        title={itemTitle || "untitled"}
-        width="fit-content"
-      />
-    </div>
+    <WindowComponent
+      className="Item"
+      content={<Content />}
+      title={
+        isPending || isLoading || error
+          ? "Diagnostics"
+          : itemTitle
+            ? itemTitle
+            : ""
+      }
+      width="fit-content"
+      modalId="item-modal"
+    />
   ) : null;
 };

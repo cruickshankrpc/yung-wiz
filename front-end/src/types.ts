@@ -6,5 +6,17 @@ export interface ListDataProps {
 }
 
 export interface ListProps {
-  list?: ListDataProps[];
+  data?: ListDataProps[];
+  isLoading?: boolean;
+  isPending?: boolean;
+  error?: boolean;
+}
+
+export interface WindowComponentProps {
+  list?: any;
+  content: any; //TODO
+  width?: string;
+  title: string;
+  className?: string;
+  modalId?: string;
 }

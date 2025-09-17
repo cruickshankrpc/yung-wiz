@@ -14,6 +14,7 @@ import { Item } from "./components/Item/Item";
 import LoginPage from "./components/LoginPage/LoginPage";
 import HomePage from "./components/HomePage/HomePage";
 import StartUpScreen from "./components/StartUpScreen/StartUpScreen";
+import MobileScreen from "./MobileScreen/MobileScreen";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
     <Route>
       <Route path="/" element={<StartUpScreen />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/mobile-view" element={<MobileScreen />} />
       <Route path="/home" element={<App />}>
         <Route path="/home/database" element={<DatabaseList />}>
           <Route path="/home/database/:itemTitle" element={<Item />} />

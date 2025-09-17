@@ -9,11 +9,6 @@ import Orb from "../Icons/Orb/Orb.component";
 import SpaceInvadersIcon from "../Icons/SpaceInvaders/SpaceInvaders.component";
 import { Item } from "../Item/Item";
 import TaskBar from "../TaskBar/TaskBar.component";
-import { useQuery } from "@tanstack/react-query";
-import useDatabaseList from "../../hooks/useDatabaseList";
-import { PendingModal } from "../DatabaseList/DatabaseList";
-
-// const ModalContext = createContext();
 
 // TODO
 // useContext to set state of modals open/closed
@@ -28,18 +23,12 @@ function HomePage() {
 
   return (
     <div className="HomePage">
-      <div className="Layout">
-        <a href="#dialog-demo">Open Dialog</a>
-
-        <PendingModal />
-
-        {modal ? (
-          <>
-            <DatabaseList />
-            <Item />
-          </>
-        ) : null}
-      </div>
+      {modal ? (
+        <>
+          <DatabaseList />
+          <Item />
+        </>
+      ) : null}
       <Orb />
       <TaskBar />
       <DatabaseIcon />

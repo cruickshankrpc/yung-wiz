@@ -1,0 +1,11 @@
+.MobileScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.MobileScreen__Window {
+  max-height: 90px;
+}

@@ -13,12 +13,12 @@ const LoginPage = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(input.username);
-    console.log(input.password);
+    // TODO refactor ?
     if (input.username !== "jack" && input.password !== "bluelotus") {
       // dispatch action from hooks
       alert("Please provide valid username and password");
-    } else if (input.username !== "jack" && input.password !== "bluelotus") {
+    }
+    if (input.username === "jack" && input.password === "bluelotus") {
       console.log("success");
       navigate("/home");
     }
