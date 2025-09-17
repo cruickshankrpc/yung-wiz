@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-case-declarations */
-require('dotenv').config()
-import http from 'http'
-import { Client } from '@notionhq/client'
+require("dotenv").config();
+import http from "http";
+import { Client } from "@notionhq/client";
 
 // This is Typescript  interface for the shape of the object we will
 // create based on our database to send to the React app
@@ -16,78 +16,79 @@ interface NotionContent {
   link?: string;
 }
 
-const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID
-const NOTION_SECRET = process.env.NOTION_SECRET
+const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
+const NOTION_SECRET = process.env.NOTION_SECRET;
 
 if (!NOTION_DATABASE_ID || !NOTION_SECRET) {
-  throw Error('Must define NOTION_SECRET and NOTION_DATABASE_ID in env')
+  throw Error("Must define NOTION_SECRET and NOTION_DATABASE_ID in env");
 }
 
 // Initializing the Notion client with your secret
 const notion = new Client({
-  auth: NOTION_SECRET
-})
+  auth: NOTION_SECRET,
+});
 
-const host = 'localhost'
-const port = 8000
+const host = "localhost";
+const port = 8000;
 
 // Require an async function here to support await with the DB query
 const server = http.createServer(async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader("Access-Control-Allow-Origin", "*");
 
   switch (req.url) {
-    case '/':
+    case "/":
       // Query the database and wait for the result
       const query = await notion.databases.query({
-        database_id: NOTION_DATABASE_ID
-      })
-
+        database_id: NOTION_DATABASE_ID,
+      });
+      // TODO cleanup
       // We map over the complex shape of the results and return a nice clean array of
       // objects in the shape of our `NotionContent` interface
       const resultsArr: NotionContent[] = query.results.map((row: any) => {
         // row represents a row in our database and the name of the column is the
         // way to reference the data in that column
-        const titleCell = row.properties.Title.title[0].plain_text
+        const titleCell = row.properties.Title.title[0].plain_text;
 
         // Depending on the column "type" we selected in Notion there will be different
         // data available to us (URL vs Date vs text for example) so in order for Typescript
         // to safely infer we have to check the `type` value.  We had one text and one url column.
-        const isTitle = titleCell.type === 'rich_text'
-
+        const isTitle = titleCell.type === "rich_text";
 
         // Verify the types are correct
         // if (isTitle) {
         // Pull the string values of the cells off the column data
-        const title = titleCell
+        const title = titleCell;
 
-        const contentArr = row.properties.Content.rich_text.map((item: any) => item.plain_text) 
+        const contentArr = row.properties.Content.rich_text.map(
+          (item: any) => item.plain_text
+        );
 
-        const fileUrl =  row.properties['Files & media'].files[0]?.file?.url
+        const fileUrl = row.properties["Files & media"].files[0]?.file?.url;
 
-        const link = row.properties.Link?.rich_text[0]?.plain_text
+        const link = row.properties.Link?.rich_text[0]?.plain_text;
 
         // Return it in our `NotionContent` shape
-        return { title, contentArr, fileUrl, link }
+        return { title, contentArr, fileUrl, link };
 
         // If a row is found that does not match the rules we checked it will still return in the
         // the expected shape but with a NOT_FOUND title
         // return { title: 'NOT_FOUND' }
-      })
+      });
 
-      console.log('resultsArr>>', resultsArr)
+      console.log("resultsArr>>", resultsArr);
 
-      res.setHeader('Content-Type', 'application/json')
-      res.writeHead(200)
-      res.end(JSON.stringify(resultsArr))
-      break
+      res.setHeader("Content-Type", "application/json");
+      res.writeHead(200);
+      res.end(JSON.stringify(resultsArr));
+      break;
 
     default:
-      res.setHeader('Content-Type', 'application/json')
-      res.writeHead(404)
-      res.end(JSON.stringify({ error: 'Resource not found' }))
+      res.setHeader("Content-Type", "application/json");
+      res.writeHead(404);
+      res.end(JSON.stringify({ error: "Resource not found" }));
   }
-})
+});
 
 server.listen(port, host, () => {
-  console.log(`Server is running on http://${host}:${port}`)
-})
+  console.log(`Server is running on http://${host}:${port}`);
+});
