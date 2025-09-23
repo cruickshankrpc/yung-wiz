@@ -1,16 +1,13 @@
-import HomePage from "./components/HomePage/HomePage";
+import HomePage from "./screens/HomePage/HomePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ModalProvider } from "./context/ModalContext";
-
+import "./App.css";
 const queryClient = new QueryClient();
 
 function App() {
   return (
-    <ModalProvider>
-      <QueryClientProvider client={queryClient}>
-        <HomePage />
-      </QueryClientProvider>
-    </ModalProvider>
+    <QueryClientProvider client={queryClient}>
+      <HomePage />
+    </QueryClientProvider>
   );
 }
 

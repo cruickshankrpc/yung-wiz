@@ -11,10 +11,9 @@ import {
 } from "react-router";
 import { DatabaseList } from "./components/DatabaseList/DatabaseList";
 import { Item } from "./components/Item/Item";
-import LoginPage from "./components/LoginPage/LoginPage";
-import HomePage from "./components/HomePage/HomePage";
-import StartUpScreen from "./components/StartUpScreen/StartUpScreen";
-import MobileScreen from "./MobileScreen/MobileScreen";
+import LoginPage from "./screens/LoginPage/LoginPage";
+import StartUpScreen from "./screens/StartUpScreen/StartUpScreen";
+import MobileScreen from "./screens/MobileScreen/MobileScreen";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,

@@ -40,7 +40,7 @@ export const DatabaseList = () => {
     <WindowComponent
       modalId="database-list"
       className="Database"
-      content={<Content />}
+      content={<Content />} //TODO change to children
       title="Database"
     />
   );

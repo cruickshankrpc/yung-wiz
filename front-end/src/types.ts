@@ -19,4 +19,5 @@ export interface WindowComponentProps {
   title: string;
   className?: string;
   modalId?: string;
+  clickedItem?: any;
 }

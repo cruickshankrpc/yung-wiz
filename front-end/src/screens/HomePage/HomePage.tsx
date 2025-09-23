@@ -3,12 +3,12 @@ import React, { useState, useContext, createContext, useEffect } from "react";
 import "./HomePage.styles.css";
 import "7.css/dist/7.scoped.css";
 import { Link } from "react-router";
-import { DatabaseList } from "../DatabaseList/DatabaseList";
-import DatabaseIcon from "../Icons/DatabaseIcon/DatabaseIcon.component";
-import Orb from "../Icons/Orb/Orb.component";
-import SpaceInvadersIcon from "../Icons/SpaceInvaders/SpaceInvaders.component";
-import { Item } from "../Item/Item";
-import TaskBar from "../TaskBar/TaskBar.component";
+import { DatabaseList } from "../../components/DatabaseList/DatabaseList";
+import DatabaseIcon from "../../components/Icons/DatabaseIcon/DatabaseIcon.component";
+import Orb from "../../components/Icons/Orb/Orb.component";
+import SpaceInvadersIcon from "../../components/Icons/SpaceInvaders/SpaceInvaders.component";
+import { Item } from "../../components/Item/Item";
+import TaskBar from "../../components/TaskBar/TaskBar.component";
 
 // TODO
 // useContext to set state of modals open/closed

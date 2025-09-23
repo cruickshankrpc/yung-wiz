@@ -70,6 +70,7 @@ export const Item = () => {
       }
       width="fit-content"
       modalId="item-modal"
+      clickedItem={clickedItem}
     />
   ) : null;
 };

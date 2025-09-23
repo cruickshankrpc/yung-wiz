@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Login.styles.css";
 import "7.css/dist/7.scoped.css";
-import ArrowIcon from "../Icons/Arrow/ArrowIcon";
+import ArrowIcon from "../../components/Icons/Arrow/ArrowIcon";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
@@ -11,14 +11,17 @@ const LoginPage = () => {
     password: "",
   });
 
+  const USERNAME = "jack";
+  const PASSWORD = "yungwiz";
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     // TODO refactor ?
-    if (input.username !== "jack" && input.password !== "bluelotus") {
+    if (input.username !== USERNAME && input.password !== PASSWORD) {
       // dispatch action from hooks
       alert("Please provide valid username and password");
     }
-    if (input.username === "jack" && input.password === "bluelotus") {
+    if (input.username === USERNAME && input.password === PASSWORD) {
       console.log("success");
       navigate("/home");
     }

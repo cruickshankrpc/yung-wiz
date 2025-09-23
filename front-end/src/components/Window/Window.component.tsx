@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Window.styles.css";
 import { WindowComponentProps } from "../../types";
+import { useNavigate } from "react-router";
 
 export const WindowComponent = ({
   content,
@@ -8,10 +9,17 @@ export const WindowComponent = ({
   width = "500px",
   className,
   modalId,
+  clickedItem,
 }: WindowComponentProps) => {
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
 
-  // console.log("WINDOWCOMP", open)
+  const handleClick = () => {
+    setOpen(!open);
+    navigate("/home");
+    clickedItem && navigate("/home/database");
+  };
+
   return open ? (
     <div className="win7">
       <div
@@ -22,10 +30,7 @@ export const WindowComponent = ({
         <div className="title-bar">
           <div className="title-bar-text">{title}</div>
           <div className="title-bar-controls">
-            <button
-              aria-label="Close"
-              onClick={() => setOpen(open ? false : true)}
-            ></button>
+            <button aria-label="Close" onClick={handleClick}></button>
           </div>
         </div>
         <div className="window-body has-space">{content}</div>
