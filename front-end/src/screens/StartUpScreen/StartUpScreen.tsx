@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./StartUpScreen.styles.css";
+import "7.css/dist/7.scoped.css";
 import { useNavigate } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 
@@ -27,10 +28,11 @@ function StartUpScreen() {
     } else {
       navigate("/login");
     }
-  }, 7000);
+  }, 8000);
 
   return (
-    <div className="StartUpPage">
+    <div className="StartUpPage win7">
+      <button>Click to start</button>
       {playVideo ? (
         <video src="/startup.mp4" id="video" autoPlay></video>
       ) : null}

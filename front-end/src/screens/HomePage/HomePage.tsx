@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import "./HomePage.styles.css";
 import "7.css/dist/7.scoped.css";
 import { Link, Outlet } from "react-router";

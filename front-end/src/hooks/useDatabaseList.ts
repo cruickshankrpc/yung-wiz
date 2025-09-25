@@ -4,13 +4,17 @@ const useDatabaseList = () =>
   useQuery({
     queryKey: ["databaseData"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:8000/");
-      const res = await response.json();
-      if (!res.ok) {
-        throw new Error("Network response was not ok!");
+      try {
+        const response = await fetch("http://localhost:8000/");
+        const res = await response.json();
+        return res.reverse(); // render in order
+      } catch (error) {
+        if (error) {
+          throw error;
+        }
       }
-      return res.reverse();
     },
+    // throwOnError: true, // cannot catch asynchronous errors
   });
 
 export default useDatabaseList;

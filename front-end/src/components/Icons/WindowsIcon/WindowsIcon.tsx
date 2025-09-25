@@ -3,7 +3,7 @@ import "./WindowsIcon.styles.css";
 function WindowsIcon() {
   return (
     <Link
-      to="https://nainemom.github.io/win7/"
+      to="https://www.windows93.net"
       target="_blank"
       rel="noopener noreferrer"
     >
