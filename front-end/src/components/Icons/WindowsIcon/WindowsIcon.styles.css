@@ -1,9 +1,9 @@
 .Windows__Icon {
-  background-image: url("/public/windows-icon.ico");
+  background-image: url("/public/90s-icon.png");
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: center;
   background-size: 80px;
-  height: 125px;
+  height: 115px;
   width: 80px;
   position: absolute;
   bottom: 100px;
@@ -15,7 +15,7 @@
 .Windows__Icon:after {
   display: block;
   position: absolute;
-  bottom: 0px;
+  bottom: -5px;
   width: 100%;
   text-align: center;
   content: attr(data-label);

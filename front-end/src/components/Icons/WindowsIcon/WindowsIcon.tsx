@@ -7,7 +7,7 @@ function WindowsIcon() {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="Windows__Icon" data-label="Windows7 Simulator"></div>
+      <div className="Windows__Icon" data-label="windows93"></div>
     </Link>
   );
 }
