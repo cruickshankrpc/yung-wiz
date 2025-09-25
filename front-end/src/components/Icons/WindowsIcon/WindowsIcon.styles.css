@@ -1,18 +1,18 @@
-.SpaceInvaders__Icon {
-  background-image: url("/public/space-invaders.png");
+.Windows__Icon {
+  background-image: url("/public/windows-icon.ico");
   background-repeat: no-repeat;
-  background-size: 60px;
   background-position: top center;
-  height: 100px;
+  background-size: 80px;
+  height: 125px;
   width: 80px;
+  position: absolute;
+  bottom: 100px;
+  left: 25px;
   border: solid 1px transparent;
   border-radius: 2px;
-  position: absolute;
-  bottom: 255px;
-  left: 25px;
 }
 
-.SpaceInvaders__Icon:after {
+.Windows__Icon:after {
   display: block;
   position: absolute;
   bottom: 0px;
@@ -24,7 +24,7 @@
   font-size: 16px;
 }
 
-.SpaceInvaders__Icon:hover {
+.Windows__Icon:hover {
   background-color: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.3);
 }

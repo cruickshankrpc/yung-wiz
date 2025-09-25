@@ -6,6 +6,7 @@ import DatabaseIcon from "../../components/Icons/DatabaseIcon/DatabaseIcon.compo
 import Orb from "../../components/Icons/Orb/Orb.component";
 import SpaceInvadersIcon from "../../components/Icons/SpaceInvaders/SpaceInvaders.component";
 import TaskBar from "../../components/TaskBar/TaskBar.component";
+import WindowsIcon from "../../components/Icons/WindowsIcon/WindowsIcon";
 
 // TODO
 // Cleanup classnames for consistency
@@ -26,6 +27,7 @@ function HomePage() {
         className="Database__Icon"
       ></Link>
       <SpaceInvadersIcon />
+      <WindowsIcon />
       <main>
         <Outlet />
       </main>
