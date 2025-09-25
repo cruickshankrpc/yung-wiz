@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 export interface ListDataProps {
   title: string;
   contentArr?: string[];
@@ -14,10 +16,9 @@ export interface ListProps {
 
 export interface WindowComponentProps {
   list?: any;
-  content: any; //TODO
+  children: JSX.Element;
   width?: string;
   title: string;
   className?: string;
-  modalId?: string;
-  clickedItem?: any;
+  clickedItem?: ListDataProps;
 }

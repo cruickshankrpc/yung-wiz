@@ -1,6 +1,6 @@
-import { Link } from "react-router";
-import { ListDataProps, ListProps } from "../../types";
-import { WindowComponent } from "../Window/Window.component";
+import { Link, Outlet } from "react-router";
+import { ListDataProps } from "../../types";
+import { WindowComponent } from "../Window/WindowComponent";
 import "./DatabaseList.styles.css";
 import "7.css/dist/7.scoped.css";
 import useDatabaseList from "../../hooks/useDatabaseList";
@@ -22,9 +22,9 @@ const Content = () => {
       {data &&
         data.map((item: ListDataProps, idx: number) => {
           return (
-            <div>
+            <div key={idx}>
               <Link to={`/home/database/${item.title}`}>
-                <li role="option" key={idx} id={item.title}>
+                <li role="option" key={item.title} id={item.title}>
                   {item.title}
                 </li>
               </Link>
@@ -37,11 +37,11 @@ const Content = () => {
 
 export const DatabaseList = () => {
   return (
-    <WindowComponent
-      modalId="database-list"
-      className="Database"
-      content={<Content />} //TODO change to children
-      title="Database"
-    />
+    <>
+      <WindowComponent className="Database" title="Database">
+        <Content />
+      </WindowComponent>
+      <Outlet />
+    </>
   );
 };

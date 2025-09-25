@@ -28,7 +28,7 @@ function StartUpScreen() {
     } else {
       navigate("/login");
     }
-  }, 8000);
+  }, 7000);
 
   return (
     <div className="StartUpPage">

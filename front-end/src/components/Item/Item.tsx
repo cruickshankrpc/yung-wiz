@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { ListDataProps, ListProps } from "../../types";
-import { WindowComponent } from "../Window/Window.component";
+import { WindowComponent } from "../Window/WindowComponent";
 import ReactPlayer from "react-player";
 import "./Item.styles.css";
 import useDatabaseList from "../../hooks/useDatabaseList";
@@ -9,21 +9,22 @@ import { ErrorModal } from "../Modals/ErrorModal";
 
 // TODO
 // lazy loading
-// add spinner/loading element
 // cleanup styles for consistency
 
 const TextItem = ({ data }: any) => {
   return (
     <div style={{ maxWidth: "500px" }}>
-      {data.map((content: any) => (
-        <div style={{ whiteSpace: "pre-line", padding: "15px" }}>{content}</div>
+      {data.map((content: string, idx: number) => (
+        <div key={idx} style={{ whiteSpace: "pre-line", padding: "15px" }}>
+          {content}
+        </div>
       ))}
     </div>
   );
 };
 
 export const Item = () => {
-  const { itemTitle } = useParams();
+  const { itemTitle } = useParams(); // this can be used as a prop
   const { data, error, isPending, isLoading } = useDatabaseList();
 
   const clickedItem =
@@ -57,10 +58,9 @@ export const Item = () => {
     );
   };
 
-  return clickedItem ? (
+  return (
     <WindowComponent
       className="Item"
-      content={<Content />}
       title={
         isPending || isLoading || error
           ? "Diagnostics"
@@ -69,8 +69,9 @@ export const Item = () => {
             : ""
       }
       width="fit-content"
-      modalId="item-modal"
       clickedItem={clickedItem}
-    />
-  ) : null;
+    >
+      <Content />
+    </WindowComponent>
+  );
 };

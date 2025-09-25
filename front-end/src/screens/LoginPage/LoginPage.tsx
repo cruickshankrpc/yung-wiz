@@ -3,6 +3,7 @@ import "./Login.styles.css";
 import "7.css/dist/7.scoped.css";
 import ArrowIcon from "../../components/Icons/Arrow/ArrowIcon";
 import { useNavigate } from "react-router-dom";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const LoginPage = () => {
     username: "",
     password: "",
   });
+  const [error, setError] = useState(false);
 
   const USERNAME = "jack";
   const PASSWORD = "yungwiz";
@@ -17,9 +19,9 @@ const LoginPage = () => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     // TODO refactor ?
-    if (input.username !== USERNAME && input.password !== PASSWORD) {
-      // dispatch action from hooks
-      alert("Please provide valid username and password");
+    console.log(input.username !== USERNAME);
+    if (input.username !== USERNAME || input.password !== PASSWORD) {
+      setError(true);
     }
     if (input.username === USERNAME && input.password === PASSWORD) {
       console.log("success");
@@ -27,7 +29,7 @@ const LoginPage = () => {
     }
   };
 
-  const handleInput = (e: { target: { name: any; value: any } }) => {
+  const handleInput = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
     setInput((prev) => ({
       ...prev,
@@ -67,6 +69,7 @@ const LoginPage = () => {
                 placeholder="Password"
               />
             </div>
+            {error && <ErrorMessage />}
           </div>
           <div className="arrow-icon__container">
             <button className="button">

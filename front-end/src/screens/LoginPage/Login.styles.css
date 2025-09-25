@@ -73,15 +73,6 @@ input[type="reset"] {
   outline: inherit;
   transition: none !important;
 }
-/* .button:hover, .button:after, [role=button] {
-  transition: none;
-  background: none;
-  box-shadow: none;
-  pointer-events: none;
-  border: none;
-  transition: none;
-
-} */
 
 .arrow-icon:hover {
   filter: brightness(1.2);
