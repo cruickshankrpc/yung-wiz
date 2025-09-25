@@ -7,6 +7,7 @@ import Orb from "../../components/Icons/Orb/Orb.component";
 import SpaceInvadersIcon from "../../components/Icons/SpaceInvaders/SpaceInvaders.component";
 import TaskBar from "../../components/TaskBar/TaskBar.component";
 import WindowsIcon from "../../components/Icons/WindowsIcon/WindowsIcon";
+import moment from "moment";
 
 // TODO
 // Cleanup classnames for consistency
@@ -16,9 +17,11 @@ import WindowsIcon from "../../components/Icons/WindowsIcon/WindowsIcon";
 // stretch: add option to leave a note/add a memory
 
 function HomePage() {
+  const date = moment().format("h:mmA MM/DD/YYYY");
   return (
     <div className="HomePage">
       <Orb />
+      <div className="Date__box">{date}</div>
       <TaskBar />
       <DatabaseIcon />
       <Link
