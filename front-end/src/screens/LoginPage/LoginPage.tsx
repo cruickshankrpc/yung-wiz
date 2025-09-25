@@ -13,13 +13,13 @@ const LoginPage = () => {
   });
   const [error, setError] = useState(false);
 
-  const USERNAME = "jack";
-  const PASSWORD = "yungwiz";
+  // TODO advanced authentication
+  const USERNAME = process.env.REACT_APP_USERNAME;
+  const PASSWORD = process.env.REACT_APP_PASSWORD;
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    // TODO refactor ?
-    console.log(input.username !== USERNAME);
+
     if (input.username !== USERNAME || input.password !== PASSWORD) {
       setError(true);
     }

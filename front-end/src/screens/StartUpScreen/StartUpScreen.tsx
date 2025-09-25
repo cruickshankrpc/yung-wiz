@@ -6,7 +6,6 @@ import { isMobile } from "react-device-detect";
 function StartUpScreen() {
   const [playVideo, setPlayVideo] = useState<boolean>(false);
   const navigate = useNavigate();
-  //TODO error handling
 
   // trigger video play with audio and set screen to full onclick
   useEffect(() => {

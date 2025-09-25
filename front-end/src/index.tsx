@@ -19,6 +19,8 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 
+//TODO Create protected routes
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>

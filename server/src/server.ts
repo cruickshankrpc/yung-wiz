@@ -11,7 +11,6 @@ import { Client } from "@notionhq/client";
 interface NotionContent {
   title: string;
   contentArr?: string[];
-  // metadata?: string;
   fileUrl?: string;
   link?: string;
 }
