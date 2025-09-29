@@ -13,6 +13,7 @@ interface NotionContent {
   contentArr?: string[];
   fileUrl?: string;
   link?: string;
+  audioUrl?: string;
 }
 
 const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
@@ -54,10 +55,16 @@ const server = http.createServer(async (req, res) => {
 
         const fileUrl = row.properties["Files & media"].files[0]?.file?.url;
 
+        let audioUrl;
+
+        if (row.properties.Type.select?.name === "audio") {
+          audioUrl = row.properties["Files & media"].files[0]?.file?.url;
+        }
+
         const link = row.properties.Link?.rich_text[0]?.plain_text;
 
         // Return it in our `NotionContent` shape
-        return { title, contentArr, fileUrl, link };
+        return { title, contentArr, fileUrl, link, audioUrl };
       });
 
       res.setHeader("Content-Type", "application/json");

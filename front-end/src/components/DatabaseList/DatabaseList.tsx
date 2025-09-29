@@ -18,7 +18,7 @@ const Content = () => {
   }
 
   return (
-    <ul role="listbox" className="has-shadow has-hover">
+    <ul role="listbox" className="has-shadow has-hover database__listbox">
       {data &&
         data.map((item: ListDataProps, idx: number) => {
           return (
@@ -38,7 +38,7 @@ const Content = () => {
 export const DatabaseList = () => {
   return (
     <>
-      <WindowComponent className="Database" title="Database">
+      <WindowComponent className="Database has-scrollbar" title="Database">
         <Content />
       </WindowComponent>
       <Outlet />

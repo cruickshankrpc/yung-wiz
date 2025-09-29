@@ -30,6 +30,7 @@ export const Item = () => {
   const clickedItem =
     data && data.find((item: ListDataProps) => item.title === itemTitle);
 
+  console.log(clickedItem);
   const Content = () => {
     if (error) return <ErrorModal />;
 
@@ -38,13 +39,18 @@ export const Item = () => {
     return (
       <>
         {clickedItem?.contentArr && <TextItem data={clickedItem?.contentArr} />}
-        {clickedItem?.fileUrl && (
+        {clickedItem?.fileUrl && !clickedItem.audioUrl && (
           <img
             src={`${clickedItem.fileUrl}`}
             height={400}
             width={600}
             fetchPriority="high"
           />
+        )}
+        {clickedItem?.audioUrl && (
+          <video controls autoPlay>
+            <source src={`${clickedItem.fileUrl}`} type="audio/x-m4a"></source>
+          </video>
         )}
         {clickedItem?.link && (
           <ReactPlayer

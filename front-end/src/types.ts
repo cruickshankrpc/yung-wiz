@@ -5,6 +5,7 @@ export interface ListDataProps {
   contentArr?: string[];
   fileUrl?: string;
   link?: string;
+  audioUrl?: string;
 }
 
 export interface ListProps {
