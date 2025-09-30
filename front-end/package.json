@@ -28,6 +28,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eslint-check-only": "npx eslint .",
     "eslint-fix": "npx eslint . --fix",
     "prettier": "npx prettier --write .",
@@ -60,6 +62,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react": "^7.37.5",
+    "gh-pages": "^6.3.0",
     "globals": "^16.3.0",
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
