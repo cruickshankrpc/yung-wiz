@@ -1,8 +1,11 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-case-declarations */
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console */
 require("dotenv").config();
 import http from "http";
 import { Client } from "@notionhq/client";
+const fs = require("fs");
+const path = require("path");
 
 // This is Typescript  interface for the shape of the object we will
 // create based on our database to send to the React app
@@ -30,6 +33,9 @@ const notion = new Client({
 
 const host = "localhost";
 const port = 8000;
+
+// Path to CRA build folder
+const buildPath = path.join(__dirname, "../front-end/build");
 
 // Require an async function here to support await with the DB query
 const server = http.createServer(async (req, res) => {
@@ -77,6 +83,25 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(404);
       res.end(JSON.stringify({ error: "Resource not found" }));
   }
+  // --- Frontend (CRA + React Router) ---
+  let filePath = path.join(buildPath, req.url);
+
+  // If request is for root or a React Router route → serve index.html
+  if (!fs.existsSync(filePath) || fs.lstatSync(filePath).isDirectory()) {
+    filePath = path.join(buildPath, "index.html");
+  }
+
+  // Detect content type (basic)
+  let ext = path.extname(filePath);
+  let contentType = "text/html";
+  if (ext === ".js") contentType = "text/javascript";
+  else if (ext === ".css") contentType = "text/css";
+  else if (ext === ".json") contentType = "application/json";
+  else if (ext === ".png") contentType = "image/png";
+  else if (ext === ".jpg" || ext === ".jpeg") contentType = "image/jpeg";
+
+  res.writeHead(200, { "Content-Type": contentType });
+  fs.createReadStream(filePath).pipe(res);
 });
 
 server.listen(port, host, () => {
